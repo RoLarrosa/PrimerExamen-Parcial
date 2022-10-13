@@ -87,8 +87,31 @@ userController.putUser = async (req, res) => {
     }
 }
 
-userController.deleteUser = (req, res) => {
-    
+//Elimino el usuario(borrado logico)
+userController.deleteUser = async(req, res) => {
+    const userId = req.user._id;
+
+    //const filter = { userId }
+    const update = { isActive: false }
+
+    try {
+        const userUpdated = await User.findOneAndUpdate(userId, update);
+
+        if (!userUpdated) {
+            return res.status(400).json({
+                message: 'No se pudo eliminar la Usuario.'
+            });
+        }
+
+        return res.json({
+            message: 'Usuario eliminado correctamente.'
+        });
+    }  catch (error) {
+        return res.status(400).json({
+            message: 'Ocurrió un error al borrar al Usuario.'
+        });
+    }
 }
+
 
 module.exports = userController;
