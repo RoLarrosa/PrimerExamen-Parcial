@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
-/*const user = 'proyecto_1';
-const password = 'GvjIxyFz2e70jNOZ';
-const dbname = 'proyecto_express';*/
-//const uri = `mongodb+srv://${user}:${password}@cluster0.aixqygc.mongodb.net/${dbname}?retryWrites=true&w=majority`;
+const user = 'rocio';
+const password = 'rocio';
+const dbname = 'proyecto_express';
+
 
 const dbConnect = async () => {
-    const uri = "mongodb+srv://rocio:rocio@cluster0.aixqygc.mongodb.net/proyecto_express?retryWrites=true&w=majority";
+    const uri = `mongodb+srv://${user}:${password}@cluster0.aixqygc.mongodb.net/${dbname}?retryWrites=true&w=majority`;
 
     await mongoose.connect(uri, {
         useNewUrlParser: true,
