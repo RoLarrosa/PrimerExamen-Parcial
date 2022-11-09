@@ -16,6 +16,9 @@ userController.postUser = async (req, res) => {
     
     const passwordEncriptada = encriptarPassword(password);
 
+    const userAct = await User.findOne({ email });
+    
+    //userAct && res.status(400)
     const newUser = new User({
         name,
         password: passwordEncriptada,
@@ -31,7 +34,7 @@ userController.postUser = async (req, res) => {
 
         return res.json({
             message: 'Usuario cargado correctamente',
-            userAct
+            userAct: userAct
         });
     } catch (error) {
         return res.json({

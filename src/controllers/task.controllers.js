@@ -56,14 +56,24 @@ taskController.postTask = async (req, res) => {
         userId
     });
 
-    try {
+    try{
+        const taskbusca = await Task.findOne({titulo});
+
+        console.log(taskbusca);
+
+        if(taskbusca){
+            return res.status(400).json({
+                message: 'Ya existe una tarea con ese titulo.'})
+                
+        } 
         const task = await newTask.save();
         
         return res.json({
             message: 'Tarea creada correctamente.',
             task
         });
-    } catch (error) {
+        
+    }catch (error) { 
         return res.status(400).json({
             message: 'Ocurrió un error al crear la tarea.'
         });

@@ -3,7 +3,10 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT;
 const conexionDb = require('./src/db/connection')
+const cors = require('cors')
 conexionDb();
+
+app.use(cors())
 
 const userRoutes = require('./src/routes/user.routes');
 const authRoutes = require('./src/routes/auth.routes');
